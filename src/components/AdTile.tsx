@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import type { AdMeta } from "../types";
+import { url } from "../url";
 
 type Props = AdMeta & { id: string };
 
@@ -8,7 +9,7 @@ export default function AdTile({ id, title, pris, kategori, thumbnail }: Props) 
     <Link to={`/ads/${id}`} className="ad-tile">
       <div className="ad-tile-image">
         {thumbnail
-          ? <img src={thumbnail} alt={title} />
+          ? <img src={url(thumbnail)} alt={title} />
           : <div className="ad-tile-no-image" />}
       </div>
       <div className="ad-tile-body">

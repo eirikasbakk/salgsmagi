@@ -40,7 +40,7 @@ export default function Ad() {
           components={{
             img: ({ src, alt, title }) => (
               <figure>
-                <img src={src} alt={alt} />
+                <img src={src ? url(src) : src} alt={alt} />
                 {title && <figcaption>{title}</figcaption>}
               </figure>
             ),
