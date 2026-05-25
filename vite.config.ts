@@ -34,5 +34,6 @@ function adsIndexPlugin() {
 }
 
 export default defineConfig({
+  base: '/salgsmagi/',
   plugins: [react(), adsIndexPlugin()],
 })
