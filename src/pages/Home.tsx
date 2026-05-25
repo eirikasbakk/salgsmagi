@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import type { AdMeta } from "../types";
 import AdTile from "../components/AdTile";
+import { url } from "../url";
 
 type AdSummary = AdMeta & { id: string };
 
@@ -9,12 +10,12 @@ export default function Home() {
   const [ads, setAds] = useState<AdSummary[]>([]);
 
   useEffect(() => {
-    fetch("/ads/index.json", { cache: "no-store" })
+    fetch(url("/ads/index.json"), { cache: "no-store" })
       .then((r) => r.json())
       .then((ids: string[]) =>
         Promise.all(
           ids.map((id) =>
-            fetch(`/ads/${id}/meta.json`, { cache: "no-store" })
+            fetch(url(`/ads/${id}/meta.json`), { cache: "no-store" })
               .then((r) => r.json())
               .then((meta: AdMeta) => ({ ...meta, id }))
           )

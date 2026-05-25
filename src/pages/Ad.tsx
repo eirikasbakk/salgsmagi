@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import type { AdMeta } from "../types";
+import { url } from "../url";
 
 export default function Ad() {
   const { id } = useParams<{ id: string }>();
@@ -10,11 +11,11 @@ export default function Ad() {
 
   useEffect(() => {
     if (!id) return;
-    fetch(`/ads/${id}/meta.json`, { cache: "no-store" })
+    fetch(url(`/ads/${id}/meta.json`), { cache: "no-store" })
       .then((r) => r.json())
       .then(setMeta);
 
-    fetch(`/ads/${id}/content.md`, { cache: "no-store" })
+    fetch(url(`/ads/${id}/content.md`), { cache: "no-store" })
       .then((r) => r.text())
       .then(setMd);
   }, [id]);
